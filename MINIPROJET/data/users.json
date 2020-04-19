@@ -1,0 +1,20 @@
+[
+    {
+        "prenom":"admin",
+        "nom":"admin",
+        "login":"admin",
+        "password":"admin",
+        "profil":"admin",
+        "photo":"admin.jpg",
+        "role":"admin"
+    },
+    {
+        "prenom":"joueur",
+        "nom":"joueur",
+        "login":"joueur",
+        "password":"joueur",
+        "profil":"joueur",
+        "photo":"joueur.jpg",
+        "role":"joueur"
+    }
+]
