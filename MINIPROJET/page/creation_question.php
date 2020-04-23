@@ -4,7 +4,7 @@
         <div class="tete_text">CRÉEZ ET PARAMÉTREZ VOS QUIZZ</div>
         <form  method="post" action="" id="form-connexion">
         <div class="form_input">
-         <button type="submit" name="" class="butt" value="">Déonnexion</button>
+         <button type="submit" name="" class="butt" value=""><a href="connexion.php">Déonnexion</a></button>
          </div>
          </form>
          </div>
@@ -15,7 +15,7 @@
             <ul id="navigation">
                   <i class="FORM1" ><img src="../public/images/ic-liste.png" alt=""></i>
              <li 
-                     id="LQ"><a href="Liste_question.php">Liste Questions </a></br></br>
+                     id="LQ"><a href="interface_joueurs.php">Liste Questions </a></br></br>
       </li>
                      <i class="FORM2" ><img src="../public/images/ic-ajout.png" alt=""></i>
                      <li id="LQ1"><a href="inscription.php">Créer Admin  </a></br></br>

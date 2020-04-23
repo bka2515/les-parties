@@ -1,15 +1,19 @@
-<?php require_once("../traitement/index.php"); ?>
+<?php require_once("../traitement/index.php");
+require_once("../traitement/fonction.php");
+?>
 <div class="interphase">
     <div class="tete">
         <div class="tete_text"></div>
         <form  method="post" action="" id="form-connexion">
         <div class="form_input">
-         <button type="submit" name="" class="butt" value="">Déonnexion</button>
+         <button type="submit" name="" class="butt" value=""><a href="connexion.php">Déonnexion</a></button>
          </div>
          </form>
          </div>
     <div class="partie">
-    <div class="partie1">  </div>
+    <div class="partie1">
+         <div class="logo1"></div> 
+          </div>
     <div class="partie2">
     <nav class="NAV">
             <ul id="navigation">

@@ -6,12 +6,13 @@
  <div  class="bande1">
  <div class="bande_text">BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ<br>
       JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</div>
- <button type="submit"  class="bande_sub"  placeholder="">Deconnexion</button>
+ <button type="submit"  class="bande_sub"  placeholder=""><a href="connexion.php">Déonnexion</a></button>
+ <div  class="logo2"></div>
 </div>
-<table class="tab3">
+<tr class="tab3">
 <tr>
 <tr>
-</table> 
+</tr> 
  <table class="tab2">
            <tr>
                 <th class="N2">Top scores</th>

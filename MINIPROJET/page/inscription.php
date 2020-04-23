@@ -1,139 +1,104 @@
- <?php require_once("../traitement/index.php"); ?>
+<?php 
+ require_once ("../traitement/fonction.php");
+ require_once("../traitement/index.php"); ?>
 <div class="contenue">
 
-<form  method="post" action="" >
-<?php
-if (isset($erreur)) {
-     echo $erreur;
-}
- ?>
+<form  method="POST" action="" enctype="multipart/form-data" >
+ 
+
          <h5>S'inscrire</h5></br>
          <p>Pour tester votre niveau de culture general</p> <hr>
     <div class="form_input">
              <h6 class="prenom">Prenom</h6>
-             <input class="form_prenon" $error="error" type="text" name="prenom" placeholder="Prenom" value=""><br>
+             <input class="form_prenon" $error="error" type="text" name="prenom"
+              placeholder="Prenom" autocomplete="off"><br>
                  <h6 class="nom">Nom</h6>
                     <input class="form_nom" type="text" $error="error" name="nom" 
-                    placeholder="Nom" value=""><br>
+                    placeholder="Nom" autocomplete="off"><br>
                     <h6 class="login">Login</h6>
                     <input class="form_login" $error  type="text" name="login" 
-                    placeholder="Login" value=""><br>
-                       <?php  $error ?>
+                    placeholder="Login" autocomplete="off"><br>
+                    <h6 class="role">profil</h6>
+                    <input class="form_role" $error  type="text" name="role" 
+                    placeholder="profil" autocomplete="off"><br>
                     <h6 class="mot_pass">Password</h6>
                     <input class="form_passwd" type="password" $error="error" name="password"
-                    placeholder="PassWord" value=""><br> 
+                    placeholder="PassWord" autocomplete="off"><br> 
                 <h6 class="mo_repass">ConfirmerPassword</h6>
-                   <input class="form_repass" type="password"  name="repassword" placeholder="PassWord" value=""><br> 
+                   <input class="form_repass" type="password"  name="repassword"
+                    placeholder="PassWord" autocomplete="off"><br> 
              </div>
                         <a href="" class="link_av">Avatar</a>
                    <input type="hidden" name="MAX_FILE_SIZE" >
                    <input type="file" name="file" class="btn_file" value=""></input>
                    <button type="submit" name="btn_submit" class="form_bt" value="Envoyer le fichier" >
                   Creer un compte</button>
-          <?php
-if (isset($message)) {
-     echo $message;
-}
-?>
-    
 </form>
+<div class="logo3"></div>
 </div>
 <?php
-                $message='';
-                $erreur='';
-                $login='';
+               
                 if (isset($_POST['btn_submit'])) {
                     //var_dump($_POST['btn_submit']);
-                  if (empty($_POST['prenom']))
-                  {  
-                        $erreur="<label 'error_form'>Entrer votre prenom</label>";
-                  }
-                  elseif (empty($_POST['nom'])) {
-                        $erreur="<label 'error_form'>Entrer votre prenom</label>";
-                  }
-                  elseif (empty($_POST['login'])) {
-                    $erreur="<label 'error_form'>Entrer votre login</label>";
-                  }
-                  elseif (empty($_POST['password'])) {
-                    $erreur="<label 'error_form'>Entrer votre password</label>";
-                  }
-                  elseif (empty($_POST['login'])) {
-                    $erreur="<label 'error_form'>Entrer votre confirmer votre password</label>";
-                  }
-                  else {
-                       if (file_exists('../data/utilisateur.json')) {
-                         $js=file_get_contents('../data/utilisateur.json');
-                         $js=json_decode($js, true);
-                         $extrait=array(
-                              'prenom'=> $_POST['prenom'],
+                    if (empty($_POST['prenom']) && empty($_POST['nom']) && empty($_POST['login'])
+                      && empty($_POST['password'])&& empty($_POST['repassword'])
+                      && empty($_FILES['file']['name']))
+                    { 
+                        echo $erreur="<label 'error_form'>tous les champ sont obligatoires</label>";
+                    }else {
+                         $data=getData();
+                         foreach ($data as $key => $value) {
+                             if ($_POST['login']==$value['login']) {
+                              $erreur="<label 'error_form'>Ce login existe deja</label>";
+                             break;
+                             }
+                             else {
+                                  if ($_POST['password']!=$_POST['repassword']) {
+                                  echo $erreur="<label 'error_form'>Les mots de pass doivent etre identiques!</label>";
+                              break;
+                              }else {
+                                   $fileName=$_FILES['file']['name'];
+                                   $fileTmpName=$_FILES['file']['tmp_name'];
+                                   $fileSize=$_FILES['file']['size'];
+                                   $fileError=$_FILES['file']['error'];
+                                   $fileType=$_FILES['file']['type'];
+                                   if (isset($fileName)) {
+                                       if ($fileError===0) {
+                                           if ($fileSize< 1000000) {
+                                               $fileDestination="c:wamp/www/MINIPROJET/public/images".$fileName;
+                                               move_uploaded_file($fileTmpName, $fileDestination);
+                                    }else {
+                                       echo $erreur='Ce fichier est trop grand!';
+                                    }
+                                }else{
+                                    $erreur='Erreur de telechargement!';
+                            }
+                           }
+                           $tabUsers=[
                                'nom'=> $_POST['nom'],
-                              'login'=> $_POST['login'],
-                              'password'=> $_POST['password'],
-                              'repassword'=> $_POST['repassword']
-                         );
-                         $data[]=$extrait;
-                         $final_data=json_encode($data);
-                         if (file_put_contents('../data/utilisateur.json', $final_data)) {
-                            $message=$erreur="<label 'text-succes'>Enrigistrement reussit</label>";
+                               'prenom'=> $_POST['prenom'],
+                               'login'=> $_POST['login'],
+                               'password'=> $_POST['password'],
+                               'repassword'=> $_POST['repassword'],
+                               'file' => $fileName,
+                               'profil' => 'joueur',
+                               'score'=> 367
+                           ];
+                           if (!empty($tabUsers) && empty($erreur)) {
+                               $data[]=$tabUsers;
+                               $data=json_encode($data);
+                               file_put_contents('../data/users.json', $data);
+                               header('location:connexion.php');
+                           }  
+                         
                          }
-                       }else {
-                         $erreur="Ce dossier n'existe pas";
-                       }
-                  }
-                  
-                 }    
-            ?>
-<?php
-/*$error='';
-if (isset($_POST['btn_submit'])) {
-     if (empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['login'])
-     || empty($_POST['password']) || empty($_POST['prenom']) || empty($_POST['repassword'])) {
-          $error='ce champs est obligatoir';
-     }else {
-                $data=array();
-                $data['prenom']=$_POST['prenom'];
-                $data['nom']=$_POST['nom'];
-                $data['login']=$_POST['login'];
-                $data['password']=$_POST['password'];
-                $data['repassword']=$_POST['password'];
-                $js=file_get_contents('../data/utilisateur.json');
-                $js=json_decode($js, true);
-                $js[]=$data;
-                $js=json_encode($js);
-                file_put_contents('../data/utilisateur.json', $js);
+                         
+                    }
                    
+               }
+                   
+               
           }
      }
-     
 ?>
 
-<?php
-$dossier = 'upload/';
-$fichier = basename($_FILES['file']['name']);
-$extensions = array('.png', '.jpg');
-$extension = strrchr($_FILES['file']['name'], '.'); 
-//Début des vérifications de sécurité...
-if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
-{
-     $data['file']=$_POST['file'];
-     $erreur = 'Vous devez uploader un fichier de type png ou jpg';
-}elseif (!isset($erreur)) //S'il n'y a pas d'erreur, on upload
-
-{
-     //On formate le nom du fichier ici...
-     $fichier = strtr($fichier, 
-     $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-     if(move_uploaded_file($_FILES['file']['tmp_name'], $dossier . $fichier)) 
-     //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-     {
-          echo 'Upload effectué avec succès !';
-     }
-     else //Sinon (la fonction renvoie FALSE).
-     {
-          echo 'Echec de l\'upload !';
-     }
-else
-{
-     echo $erreur;
-}*/
-?>
