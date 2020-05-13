@@ -1,4 +1,4 @@
-<?php require_once("../traitement/index.php");
+<?php require_once("../traitement/index_.php");
 require_once("../traitement/fonction.php");
 ?>
 <div class="interphase">
@@ -19,7 +19,7 @@ require_once("../traitement/fonction.php");
             <ul id="navigation">
                   <i class="FORM1" ><img src="../public/images/ic-liste.png" alt=""></i>
              <li 
-                     id="LQ"><a href="interface_joueurs.php">Liste Questions </a></br></br>
+                     id="LQ"><a href="interface_liste_question.php">Liste Questions </a></br></br>
       </li>
                      <i class="FORM2" ><img src="../public/images/ic-ajout.png" alt=""></i>
                      <li id="LQ1"><a href="inscription.php">Créer Admin  </a></br></br>

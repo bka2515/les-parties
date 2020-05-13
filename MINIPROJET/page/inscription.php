@@ -1,6 +1,6 @@
 <?php 
  require_once ("../traitement/fonction.php");
- require_once("../traitement/index.php"); ?>
+ require_once("../traitement/index_.php"); ?>
 <div class="contenue">
 
 <form  method="POST" action="" enctype="multipart/form-data" >
@@ -18,9 +18,6 @@
                     <h6 class="login">Login</h6>
                     <input class="form_login" $error  type="text" name="login" 
                     placeholder="Login" autocomplete="off"><br>
-                    <h6 class="role">profil</h6>
-                    <input class="form_role" $error  type="text" name="role" 
-                    placeholder="profil" autocomplete="off"><br>
                     <h6 class="mot_pass">Password</h6>
                     <input class="form_passwd" type="password" $error="error" name="password"
                     placeholder="PassWord" autocomplete="off"><br> 
@@ -81,7 +78,6 @@
                                'password'=> $_POST['password'],
                                'repassword'=> $_POST['repassword'],
                                'file' => $fileName,
-                               'profil' => 'joueur',
                                'score'=> 367
                            ];
                            if (!empty($tabUsers) && empty($erreur)) {

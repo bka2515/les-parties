@@ -16,6 +16,11 @@
         }return false;
 
     }
+    function prametres(){
+        $data=file_get_contents('../data/question.json');
+        $data=json_decode($data, true);
+        return $data;
+    }
 
 
 

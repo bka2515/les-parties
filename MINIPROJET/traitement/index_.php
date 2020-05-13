@@ -16,7 +16,7 @@
    <?php
    require_once "fonction.php";
        session_start();
-      require_once("../traitement/fonction.php");
+      
       if (isset($_GET['lien'])) {
          switch ($_GET['lien']) {
             case 'acueil':

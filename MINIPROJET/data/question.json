@@ -1,0 +1,53 @@
+[
+    {
+        "question": "donner une phrase de type imperative",
+        "nbr_point": "4",
+        "type_reponse": "TEXT_A_SAISIR",
+        "reponses": "Restez chez vous!"
+    },
+    {
+        "question": "donner une phrase de type imperative",
+        "nbr_point": "4",
+        "type_reponse": "TEXT_A_SAISIR",
+        "reponses": "Restez chez vous!"
+    },
+    {
+        "question": "c est quel genre de test la?",
+        "nbr_point": "5",
+        "type_reponse": "CHOIX_SIMPLE",
+        "reponses": {
+            "TEST A CHOIX SIMPLE": true,
+            "TEST A CHOIX MULTIPLE": false
+        }
+    },
+    {
+        "question": "QUELS SONT LES PAYS AFRICAINS ",
+        "nbr_point": "9",
+        "type_reponse": "CHOIX_MULTIPLE",
+        "reponses": {
+            "MALI": true,
+            "CHINE": false,
+            "NIGER": false,
+            "GAMBIE": false,
+            "ESPAGNE": false
+        }
+    },
+    {
+        "question": "c est quel genre de test la?",
+        "nbr_point": "5",
+        "type_reponse": "CHOIX_SIMPLE",
+        "reponses": {
+            "TEST A CHOIX SIMPLE": true,
+            "TEST A CHOIX MULTIPLE": false
+        }
+    },
+    {
+        "question": "c est quel genre de test la?",
+        "nbr_point": "5",
+        "type_reponse": "CHOIX_SIMPLE",
+        "reponses": {
+            "TEST A CHOIX SIMPLE": true,
+            "TEST A CHOIX MULTIPLE": false
+        }
+    }
+]
